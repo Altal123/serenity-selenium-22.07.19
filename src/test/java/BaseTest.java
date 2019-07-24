@@ -3,13 +3,19 @@ import net.thucydides.core.annotations.Managed;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class BaseTest {
 
-    @Managed(driver = "chrome")
+    @Managed(driver = "firefox")
     WebDriver driver;
 
     @Before
     public void setupDriver(){
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+
     }
 }
