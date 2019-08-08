@@ -19,15 +19,11 @@ public class LinkedinLoginTest extends BaseTest {
         if (!landingPage.existsWelcomePage2variant()){
             logger.info("Welcome Page (version 1) was loaded");
             //Welcome Page 1 variant
-            user.checkWelcomeTitle(driver);
-            landingPage.buttonEnterInLoginPage.click();
-
+            user.checkWelcomeTitle(driver)
+            .openLoginPage()
             //Login Page 1 variant
-            user.checkTitleLoginPage(driver);
-            logger.info("Login Page (version 1) was loaded");
-            landingPage.enter(Config.LOGIN).into(landingPage.fieldUserName);
-            landingPage.enter(Config.PASSWORD).into(landingPage.fieldPassword);
-            landingPage.buttonEnter.click();
+            .checkTitleLoginPage(driver)
+            .enterLoginPassword();
         }else{
             //Login Page 2 variant
             logger.info("Welcome Page with Login/Password fields (version 2) was loaded");
