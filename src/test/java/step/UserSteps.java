@@ -51,6 +51,17 @@ public class UserSteps {
     }
 
     @Step
+    public UserSteps enterLoginPassword2variant() {
+        landingPage.fieldEmail2variant.clear();
+        landingPage.enter(Config.LOGIN).into(landingPage.fieldEmail2variant);
+        landingPage.fieldPassword2variant.clear();
+        landingPage.enter(Config.PASSWORD).into(landingPage.fieldPassword2variant);
+        landingPage.buttonEnter2variant.click();
+        logger.info("Login and password were entered (2nd variant of Login Page)");
+        return this;
+    }
+
+    @Step
     public UserSteps checkMainPageTitle(WebDriver driver) {
         Assert.assertTrue("Main page title is not matching expected!", driver.getTitle().equals("LinkedIn"));
         return this;

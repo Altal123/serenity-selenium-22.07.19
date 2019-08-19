@@ -27,11 +27,7 @@ public class LinkedinLoginTest extends BaseTest {
         }else{
             //Login Page 2 variant
             logger.info("Welcome Page with Login/Password fields (version 2) was loaded");
-            landingPage.fieldEmail2variant.clear();
-            landingPage.enter(Config.LOGIN).into(landingPage.fieldEmail2variant);
-            landingPage.fieldPassword2variant.clear();
-            landingPage.enter(Config.PASSWORD).into(landingPage.fieldPassword2variant);
-            landingPage.buttonEnter2variant.click();
+            user.enterLoginPassword2variant();
         }
         //Main Page
         user.checkMainPageTitle(driver);
