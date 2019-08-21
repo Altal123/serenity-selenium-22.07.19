@@ -19,10 +19,10 @@ public class LinkedinLoginTest extends BaseTest {
         if (!landingPage.existsWelcomePage2variant()){
             logger.info("Welcome Page (version 1) was loaded");
             //Welcome Page 1 variant
-            user.checkWelcomeTitle(driver)
+            user.checkWelcomeTitle()
             .openLoginPage()
             //Login Page 1 variant
-            .checkTitleLoginPage(driver)
+            .checkTitleLoginPage()
             .enterLoginPassword();
         }else{
             //Login Page 2 variant
@@ -30,7 +30,7 @@ public class LinkedinLoginTest extends BaseTest {
             user.enterLoginPassword2variant();
         }
         //Main Page
-        user.checkMainPageTitle(driver);
+        user.checkMainPageTitle();
         logger.info("We are on the Main Page");
 
     }

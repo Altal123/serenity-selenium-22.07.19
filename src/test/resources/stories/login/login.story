@@ -10,3 +10,6 @@ Narrative:
 
 Scenario: Successful user login
 Given I open Landing Page
+Given I go to Login page
+When I submit authentication data
+Then Main page is loaded

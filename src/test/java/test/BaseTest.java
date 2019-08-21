@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import page.LandingPage;
+import page.MainPage;
 import step.UserSteps;
 
 import java.net.MalformedURLException;
@@ -17,8 +18,6 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     protected LandingPage landingPage;
-
-    protected page.MainPage MainPage;
 
     @Steps
     protected UserSteps user;

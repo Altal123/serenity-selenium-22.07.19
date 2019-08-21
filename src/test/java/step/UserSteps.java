@@ -4,15 +4,18 @@ import net.thucydides.core.annotations.Step;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import page.Config;
 import page.LandingPage;
+import page.MainPage;
+
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 public class UserSteps {
 
     LandingPage landingPage;
+    MainPage mainPage;
     Logger logger = LoggerFactory.getLogger(this.getClass().getName()); //org.slf4j.Logger;
 
     @Step
@@ -21,7 +24,7 @@ public class UserSteps {
     }
 
     @Step
-    public UserSteps checkWelcomeTitle(WebDriver driver) {
+    public UserSteps checkWelcomeTitle() {
         Assert.assertTrue("Title not matching",
                 landingPage.matchTitle("LinkedIn: Войти или зарегистрироваться", "LinkedIn: Log In or Sign Up"));
         return this;
@@ -35,7 +38,7 @@ public class UserSteps {
 
 
     @Step
-    public UserSteps checkTitleLoginPage(WebDriver driver) {
+    public UserSteps checkTitleLoginPage() {
         Assert.assertTrue("Title not matching",
                 landingPage.matchTitle("Вход в LinkedIn, регистрация в LinkedIn | LinkedIn", "LinkedIn Login, LinkedIn Sign in | LinkedIn"));
         logger.info("Login Page (version 1) was loaded");
@@ -62,8 +65,8 @@ public class UserSteps {
     }
 
     @Step
-    public UserSteps checkMainPageTitle(WebDriver driver) {
-        Assert.assertTrue("Main page title is not matching expected!", driver.getTitle().equals("LinkedIn"));
+    public UserSteps checkMainPageTitle() {
+        Assert.assertTrue("Main page title is not matching expected!", mainPage.getTitle().equals("Linkedin"));
         return this;
     }
 }
