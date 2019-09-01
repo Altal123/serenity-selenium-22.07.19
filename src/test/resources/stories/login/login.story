@@ -10,6 +10,7 @@ Narrative:
 
 Scenario: Successful user login
 Given I open Landing Page
-Given I go to Login page
-When I submit authentication data
-Then Main page is loaded
+When I click on 'Sign in' button
+Then I should be on Login page
+When I sign In as registered user
+Then I should be on Main page

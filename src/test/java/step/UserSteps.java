@@ -2,20 +2,20 @@ package step;
 
 import net.thucydides.core.annotations.Step;
 
+import net.thucydides.core.steps.ScenarioSteps;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import page.Config;
 import page.LandingPage;
+import page.LoginPage;
 import page.MainPage;
 
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
-
-public class UserSteps {
+public class UserSteps extends ScenarioSteps {
 
     LandingPage landingPage;
     MainPage mainPage;
+    LoginPage loginPage;
     Logger logger = LoggerFactory.getLogger(this.getClass().getName()); //org.slf4j.Logger;
 
     @Step
@@ -23,12 +23,12 @@ public class UserSteps {
         landingPage.open();
     }
 
-    @Step
-    public UserSteps checkWelcomeTitle() {
-        Assert.assertTrue("Title not matching",
-                landingPage.matchTitle("LinkedIn: Войти или зарегистрироваться", "LinkedIn: Log In or Sign Up"));
-        return this;
-    }
+//    @Step
+//    public UserSteps checkWelcomeTitle() {
+//        Assert.assertTrue("Title not matching",
+//                landingPage.matchTitle("LinkedIn: Войти или зарегистрироваться", "LinkedIn: Log In or Sign Up"));
+//        return this;
+//    }
     @Step
     public UserSteps openLoginPage() {
         landingPage.buttonEnterInLoginPage.click();
@@ -36,20 +36,16 @@ public class UserSteps {
         return this;
     }
 
-
     @Step
     public UserSteps checkTitleLoginPage() {
         Assert.assertTrue("Title not matching",
-                landingPage.matchTitle("Вход в LinkedIn, регистрация в LinkedIn | LinkedIn", "LinkedIn Login, LinkedIn Sign in | LinkedIn"));
+                landingPage.matchTitle("Вход в LinkedIn, Войти | LinkedIn", "LinkedIn Login, LinkedIn Sign in | LinkedIn"));
         logger.info("Login Page (version 1) was loaded");
         return this;
     }
     @Step
     public UserSteps enterLoginPassword() {
-        landingPage.enter(Config.LOGIN).into(landingPage.fieldUserName);
-        landingPage.enter(Config.PASSWORD).into(landingPage.fieldPassword);
-        landingPage.buttonEnter.click();
-        logger.info("Login and password were entered");
+        loginPage.enterLoginPassword();
         return this;
     }
 
@@ -66,7 +62,22 @@ public class UserSteps {
 
     @Step
     public UserSteps checkMainPageTitle() {
-        Assert.assertTrue("Main page title is not matching expected!", mainPage.getTitle().equals("Linkedin"));
+        Assert.assertTrue("Main page title is not matching expected!", mainPage.getTitle().contains("LinkedIn"));
         return this;
+    }
+
+    @Step
+    public void clickOnButton(String button){
+        landingPage.clickOnButtonWithText(button);
+    }
+
+    @Step
+    public boolean isLoginPageLoaded() {
+        return loginPage.isPageLoaded();
+    }
+
+    @Step
+    public boolean isMainPageLoaded() {
+        return mainPage.isPageLoaded();
     }
 }

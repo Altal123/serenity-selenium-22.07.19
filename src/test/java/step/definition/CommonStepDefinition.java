@@ -4,6 +4,7 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.junit.Assert;
 import step.UserSteps;
 
 public class CommonStepDefinition {
@@ -15,11 +16,9 @@ public class CommonStepDefinition {
         userSteps.openLandingPage();
     }
 
-    @Given("I go to Login page")
-    public void openLoginPage(){
-        userSteps.checkWelcomeTitle()
-                .openLoginPage()
-                .checkTitleLoginPage();
+    @When("I click on '$buttonText' button")
+    public void clickOnSignIn(String buttonText){
+        userSteps.clickOnButton(buttonText);
     }
 
     @When("I submit authentication data")
@@ -30,6 +29,21 @@ public class CommonStepDefinition {
     @Then("Main page is loaded")
     public void verifyMainPageIsLoaded(){
         userSteps.checkMainPageTitle();
+    }
+
+    @Then("I should be on Login page")
+    public void thenIShouldBeOnLoginPage() {
+        Assert.assertTrue("Home page is not loaded.", userSteps.isLoginPageLoaded());
+    }
+
+    @When("I sign In as registered user")
+    public void whenISignAsRegisteredUser(){
+        userSteps.enterLoginPassword();
+    }
+
+    @Then("I should be on Main page")
+    public void iShouldBeOnMainPage(){
+        Assert.assertTrue("Home page is not loaded.", userSteps.isMainPageLoaded());
     }
 
 }

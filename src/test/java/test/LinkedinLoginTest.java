@@ -2,7 +2,6 @@ package test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import page.Config;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,24 +12,23 @@ public class LinkedinLoginTest extends BaseTest {
 
     @Test
     public void sucessfulLoginTest(){
-        user.openLandingPage();
+        userSteps.openLandingPage();
         logger.info("We are on the Welcome Page");
 
         if (!landingPage.existsWelcomePage2variant()){
             logger.info("Welcome Page (version 1) was loaded");
             //Welcome Page 1 variant
-            user.checkWelcomeTitle()
-            .openLoginPage()
+            userSteps.openLoginPage()
             //Login Page 1 variant
             .checkTitleLoginPage()
             .enterLoginPassword();
         }else{
             //Login Page 2 variant
             logger.info("Welcome Page with Login/Password fields (version 2) was loaded");
-            user.enterLoginPassword2variant();
+            userSteps.enterLoginPassword2variant();
         }
         //Main Page
-        user.checkMainPageTitle();
+        userSteps.checkMainPageTitle();
         logger.info("We are on the Main Page");
 
     }
