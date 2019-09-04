@@ -58,7 +58,8 @@ public class LandingPage extends PageObject {
     }
 
     public void clickOnButtonWithText(String buttonText){
-        getDriver().findElement(By.linkText(String.format("%s",buttonText))).click();
+//        getDriver().findElement(By.linkText(String.format("%s",buttonText))).click();
+        element(buttonEnterInLoginPage).waitUntilClickable().click();
     }
 
 

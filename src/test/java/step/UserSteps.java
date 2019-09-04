@@ -1,9 +1,13 @@
 package step;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Step;
 
 import net.thucydides.core.steps.ScenarioSteps;
+import org.jbehave.core.annotations.BeforeStory;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import page.Config;
@@ -11,12 +15,23 @@ import page.LandingPage;
 import page.LoginPage;
 import page.MainPage;
 
+import java.net.MalformedURLException;
+
 public class UserSteps extends ScenarioSteps {
 
     LandingPage landingPage;
     MainPage mainPage;
     LoginPage loginPage;
     Logger logger = LoggerFactory.getLogger(this.getClass().getName()); //org.slf4j.Logger;
+
+    @Managed(driver = "chrome")
+    public WebDriver driver;
+
+    @BeforeStory
+    public void setupDriver() throws MalformedURLException {
+        //эта строка нужна для локального запуска
+        WebDriverManager.chromedriver().setup();
+    }
 
     @Step
     public void openLandingPage(){
@@ -44,8 +59,8 @@ public class UserSteps extends ScenarioSteps {
         return this;
     }
     @Step
-    public UserSteps enterLoginPassword() {
-        loginPage.enterLoginPassword();
+    public UserSteps enterLoginPassword(String email, String password) {
+        loginPage.enterLoginPassword(email, password);
         return this;
     }
 
@@ -74,6 +89,11 @@ public class UserSteps extends ScenarioSteps {
     @Step
     public boolean isLoginPageLoaded() {
         return loginPage.isPageLoaded();
+    }
+
+    @Step
+    public boolean isWrongPasswordErrorDisplayed(){
+        return loginPage.isWrongPasswordErrorDisplayed();
     }
 
     @Step

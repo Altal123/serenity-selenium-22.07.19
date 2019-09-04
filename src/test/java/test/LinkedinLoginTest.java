@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import page.Config;
 
 @RunWith(SerenityRunner.class)
 public class LinkedinLoginTest extends BaseTest {
@@ -21,7 +22,7 @@ public class LinkedinLoginTest extends BaseTest {
             userSteps.openLoginPage()
             //Login Page 1 variant
             .checkTitleLoginPage()
-            .enterLoginPassword();
+            .enterLoginPassword(Config.LOGIN, Config.PASSWORD);
         }else{
             //Login Page 2 variant
             logger.info("Welcome Page with Login/Password fields (version 2) was loaded");

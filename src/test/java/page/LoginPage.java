@@ -22,6 +22,9 @@ public class LoginPage extends PageObject {
     @FindBy(id = "password")
     private WebElement passwordField;
 
+    @FindBy(id = "error-for-password")
+    private WebElement errorWrongPassword;
+
     @FindBy(xpath = "//button[@type='submit']")
     public WebElementFacade buttonEnter;
 
@@ -34,10 +37,14 @@ public class LoginPage extends PageObject {
         return getPages().isCurrentPageAt(LoginPage.class);
     }
 
-    public void enterLoginPassword(){
-        enter(Config.LOGIN).into(userEmailField);
-        enter(Config.PASSWORD).into(passwordField);
+    public void enterLoginPassword(String email, String password){
+        enter(email).into(userEmailField);
+        enter(password).into(passwordField);
         buttonEnter.click();
         logger.info("Login and password were entered");
+    }
+
+    public boolean isWrongPasswordErrorDisplayed() {
+        return errorWrongPassword.isDisplayed();
     }
 }

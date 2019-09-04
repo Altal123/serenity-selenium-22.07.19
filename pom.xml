@@ -114,6 +114,7 @@
                             </includes>
                             <systemPropertyVariables>
                                 <webdriver.driver>chrome</webdriver.driver>
+                                <serenity.driver.capabilities>browserName:chrome;</serenity.driver.capabilities>
                             </systemPropertyVariables>
                         </configuration>
                         <executions>

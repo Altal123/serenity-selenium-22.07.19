@@ -21,11 +21,6 @@ public class CommonStepDefinition {
         userSteps.clickOnButton(buttonText);
     }
 
-    @When("I submit authentication data")
-    public void submitAuthenticationData(){
-        userSteps.enterLoginPassword();
-    }
-
     @Then("Main page is loaded")
     public void verifyMainPageIsLoaded(){
         userSteps.checkMainPageTitle();
@@ -33,17 +28,23 @@ public class CommonStepDefinition {
 
     @Then("I should be on Login page")
     public void thenIShouldBeOnLoginPage() {
-        Assert.assertTrue("Home page is not loaded.", userSteps.isLoginPageLoaded());
+        Assert.assertTrue("Login page is not loaded.", userSteps.isLoginPageLoaded());
     }
 
-    @When("I sign In as registered user")
-    public void whenISignAsRegisteredUser(){
-        userSteps.enterLoginPassword();
+    @When("I sign In with '$userEmail' , '$userPassword'")
+    public void whenISignAsRegisteredUser(String email, String password){
+        userSteps.enterLoginPassword(email, password);
     }
 
     @Then("I should be on Main page")
     public void iShouldBeOnMainPage(){
         Assert.assertTrue("Home page is not loaded.", userSteps.isMainPageLoaded());
+    }
+
+    @Then("I should remain on Login page and receive the error \"This is wrong password..\"")
+    public void thenIShouldGetErrorMessage() {
+//        Assert.assertTrue("Login page is not loaded", userSteps.isLoginPageLoaded());
+        Assert.assertTrue("Error with wrong password is not displayed", userSteps.isWrongPasswordErrorDisplayed());
     }
 
 }
