@@ -1,7 +1,7 @@
 Login
 
 Meta:
-@tag login
+@login
 
 Narrative:
   In order to use app functionality
@@ -10,7 +10,7 @@ Narrative:
 
 Scenario: Successful user login
 Meta:
-@tag login01
+@login01
 Given I open Landing Page
 When I click on 'Sign in' button
 Then I should be on Login page
@@ -23,7 +23,7 @@ Examples:
 
 Scenario: Unsuccessfull user login in order to remain on Login page
 Meta:
-@tag login02
+@login02
 Given I open Landing Page
 When I click on 'Sign in' button
 Then I should be on Login page
@@ -32,4 +32,5 @@ Then I should remain on Login page and receive the error "This is wrong password
 
 Examples:
 |email                          |password|
+|arhiv_@ukr.net                 |             |
 |arhiv_@ukr.net                 |dwfewfewrfe13|

@@ -1,17 +1,13 @@
 package test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import page.LandingPage;
-import page.MainPage;
 import step.UserSteps;
 
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
@@ -20,13 +16,13 @@ public class BaseTest {
     @Steps
     protected UserSteps userSteps;
 
-    @Managed(driver = "chrome")
+    @Managed(uniqueSession = true)
     WebDriver driver;
 //    RemoteWebDriver  driver;
 
     @Before
     public void setupDriver() throws MalformedURLException {
-        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().setup();
 //        DesiredCapabilities capabilities = new DesiredCapabilities();
 //        capabilities.setBrowserName("chrome");
 //        capabilities.setVersion("76.0");

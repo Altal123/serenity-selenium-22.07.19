@@ -100,4 +100,20 @@ public class UserSteps extends ScenarioSteps {
     public boolean isMainPageLoaded() {
         return mainPage.isPageLoaded();
     }
+
+    @Step
+    public void searchByKeyword(String keyword){
+        mainPage.searchByKeyword(keyword);
+    }
+
+    @Step
+    public void checkThatSearchResultIsMoreThanOne(){
+        mainPage.checkThatSearchResultIsMoreThanOne();
+    }
+
+    @Step
+    public void checkThatEachSearchResultContainsKeyword(String keyword){
+        mainPage.checkThatEachSearchResultContainsKeyword(keyword);
+    }
+
 }

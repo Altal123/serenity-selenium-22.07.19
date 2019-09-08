@@ -4,6 +4,7 @@ import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+
 import org.junit.Assert;
 import step.UserSteps;
 
@@ -42,9 +43,24 @@ public class CommonStepDefinition {
     }
 
     @Then("I should remain on Login page and receive the error \"This is wrong password..\"")
-    public void thenIShouldGetErrorMessage() {
-//        Assert.assertTrue("Login page is not loaded", userSteps.isLoginPageLoaded());
-        Assert.assertTrue("Error with wrong password is not displayed", userSteps.isWrongPasswordErrorDisplayed());
+    public void thenIShouldRemainOnLoginPageAndGetErrorMessage() {
+        Assert.assertFalse("Home page is loaded", userSteps.isMainPageLoaded());
+        Assert.assertTrue("Error with wrong password that is not displayed", userSteps.isWrongPasswordErrorDisplayed());
+    }
+
+    @When("I search for '$HR' keyword")
+    public void whenISearchByKeyword(String keyword){
+        userSteps.searchByKeyword(keyword);
+    }
+
+    @Then("I should see more than 1 result")
+    public void thenIshouldSeeMoreThan1Result(){
+        userSteps.checkThatSearchResultIsMoreThanOne();
+    }
+
+    @Then("each result contains '$HR' keyword")
+    public void andEachSearchResultContainsWordHR(String keyword){
+        userSteps.checkThatEachSearchResultContainsKeyword(keyword);
     }
 
 }
