@@ -1,0 +1,18 @@
+{
+  "internet explorer": {
+    "default": "11",
+    "versions": {
+      "11": {
+        "image": ["D:\\Selenoid\\IEDriverServer.exe"]
+      }
+    }
+  },
+  "chrome": {
+    "default": "76.0",
+    "versions": {
+      "76.0": {
+        "image": ["D:\\Selenoid\\chromedriver.exe"]
+      }
+    }
+  }
+}

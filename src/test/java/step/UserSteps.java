@@ -54,7 +54,7 @@ public class UserSteps extends ScenarioSteps {
     @Step
     public UserSteps checkTitleLoginPage() {
         Assert.assertTrue("Title not matching",
-                landingPage.matchTitle("Вход в LinkedIn, Войти | LinkedIn", "LinkedIn Login, LinkedIn Sign in | LinkedIn"));
+                landingPage.matchTitle("Вход в LinkedIn, Войти | LinkedIn", "LinkedIn Login, Sign in | LinkedIn"));
         logger.info("Login Page (version 1) was loaded");
         return this;
     }

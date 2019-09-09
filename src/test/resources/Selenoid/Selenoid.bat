@@ -1,0 +1,1 @@
+selenoid.exe -conf D:\Selenoid\browsers.json -disable-docker -limit 4 > D:\Selenoid\selenoid.log 2>&1
